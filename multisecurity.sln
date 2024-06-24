@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35004.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "multisecurity", "multisecurity\multisecurity.csproj", "{110D6C66-5F7B-437F-BC0C-8B48B57FEBFD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{110D6C66-5F7B-437F-BC0C-8B48B57FEBFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{110D6C66-5F7B-437F-BC0C-8B48B57FEBFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{110D6C66-5F7B-437F-BC0C-8B48B57FEBFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{110D6C66-5F7B-437F-BC0C-8B48B57FEBFD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0DB03B14-117C-45FB-81F0-8A0FBA3A293A}
+	EndGlobalSection
+EndGlobal
