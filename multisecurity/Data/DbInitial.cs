@@ -42,9 +42,9 @@ namespace multisecurity.Data
             {
                  new Models.User{
                      Id=1,
-                     Name="Stalin",
-                     LastName="Mejia",
-                     Email="smejia@gmail.com",
+                     Name="Daniel",
+                     LastName="Quinaopa",
+                     Email="dq@gmail.com",
                      Password="123456",
                      Phone="2222222",
                      Estado="A",
