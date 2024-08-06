@@ -1,0 +1,42 @@
+﻿using MongoDB.Driver;
+using multitrabajos_history.DTOs;
+using multitrabajos_history.Models;
+
+namespace multitrabajos_history.Repositories
+{
+    public class ServiceHistory : IServicesHistory
+    {
+        private readonly IMongoBookDBContext _context;
+        protected IMongoCollection<HistoryTransaction> _dbCollection;
+
+        public ServiceHistory(IMongoBookDBContext context)
+        {
+            _context = context;
+            _dbCollection = _context.GetCollection<HistoryTransaction>(typeof(HistoryTransaction).Name);
+        }
+        public async Task<bool> Add(HistoryTransaction historyTransaction)
+        {
+            await _dbCollection.InsertOneAsync(historyTransaction);
+            return true;
+        }
+
+        public async Task<IEnumerable<HistoryResponse>> GetAll()
+        {
+            var data = await _dbCollection.Find(_ => true).ToListAsync();
+            var response = new List<HistoryResponse>();
+            foreach (var item in data)
+            {
+                response.Add(new HistoryResponse()
+                {
+                    AccountId = item.AccountId,
+                    Amount = item.Amount,
+                    CreationDate = item.CreationDate,
+                    IdTransaction = item.IdTransaction,
+                    Type = item.Type
+                });
+            }
+
+            return response;
+        }
+    }
+}
