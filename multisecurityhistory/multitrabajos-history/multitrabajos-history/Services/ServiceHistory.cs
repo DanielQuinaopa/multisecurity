@@ -1,10 +1,11 @@
 ﻿using MongoDB.Driver;
 using multitrabajos_history.DTOs;
 using multitrabajos_history.Models;
+using multitrabajos_history.Repositories;
 
-namespace multitrabajos_history.Repositories
+namespace multitrabajos_history.Services
 {
-    public class ServiceHistory : IServicesHistory
+    public class ServiceHistory : IServiceHistory
     {
         private readonly IMongoBookDBContext _context;
         protected IMongoCollection<HistoryTransaction> _dbCollection;

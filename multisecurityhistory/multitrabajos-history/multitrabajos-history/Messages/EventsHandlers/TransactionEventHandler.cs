@@ -2,14 +2,15 @@
 using multitrabajos_history.Messages.Events;
 using multitrabajos_history.Models;
 using multitrabajos_history.Repositories;
+using multitrabajos_history.Services;
 
 namespace multitrabajos_history.Messages.EventsHandlers
 {
     public class TransactionEventHandler : IEventHandler<TransactionCreatedEvent>
     {
-        private readonly IServicesHistory _historyService;
+        private readonly IServiceHistory _historyService;
 
-        public TransactionEventHandler(IServicesHistory historyService)
+        public TransactionEventHandler(IServiceHistory historyService)
         {
             _historyService = historyService;
         }

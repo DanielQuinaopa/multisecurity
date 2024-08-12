@@ -5,6 +5,7 @@ using multitrabajos_history.Messages.Events;
 using multitrabajos_history.Messages.EventsHandlers;
 using multitrabajos_history.Repositories;
 using System.Reflection;
+using multitrabajos_history.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +18,7 @@ builder.Services.Configure<Mongosettings>(opt =>
 });
 
 //Services
-builder.Services.AddScoped<IServicesHistory, ServiceHistory>();
+builder.Services.AddScoped<IServiceHistory, ServiceHistory>();
 builder.Services.AddScoped<IMongoBookDBContext, MongoBookDBContext>();
 
 //RabbitMQ
@@ -41,5 +42,8 @@ var app = builder.Build();
 app.UseAuthorization();
 
 app.MapControllers();
+
+var eventBus = app.Services.GetRequiredService<IEventBus>();
+eventBus.Subscribe<TransactionCreatedEvent, TransactionEventHandler>();
 
 app.Run();

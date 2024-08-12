@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using multitrabajos_history.DTOs;
 using multitrabajos_history.Repositories;
+using multitrabajos_history.Services;
 
 namespace multitrabajos_history.Controllers
 {
@@ -9,8 +10,8 @@ namespace multitrabajos_history.Controllers
     [ApiController]
     public class HistoryController : ControllerBase
     {
-        private readonly IServicesHistory _historyService;
-        public HistoryController(IServicesHistory historyService)
+        private readonly IServiceHistory _historyService;
+        public HistoryController(IServiceHistory historyService)
         {
             _historyService = historyService;
         }

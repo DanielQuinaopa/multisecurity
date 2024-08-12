@@ -1,10 +1,9 @@
 ﻿using multitrabajos_history.DTOs;
 using multitrabajos_history.Models;
-using System.Data.SqlTypes;
 
-namespace multitrabajos_history.Repositories
+namespace multitrabajos_history.Services
 {
-    public interface IServicesHistory
+    public interface IServiceHistory
     {
         Task<IEnumerable<HistoryResponse>> GetAll();
         Task<bool> Add(HistoryTransaction historyTransaction);
