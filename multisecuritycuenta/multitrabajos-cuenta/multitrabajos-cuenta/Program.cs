@@ -1,3 +1,7 @@
+using Consul;
+using Cordillera.Distribuidas.Discovery.Consul;
+using Cordillera.Distribuidas.Discovery.Fabio;
+using Cordillera.Distribuidas.Discovery.Mvc;
 using Microsoft.EntityFrameworkCore;
 using multitrabajos_cuenta.Data;
 using multitrabajos_cuenta.Repository;
@@ -21,6 +25,15 @@ builder.Services.AddDbContext<ContextDatabase>(options => options.UseSqlServer(b
  
 builder.Services.AddScoped<IServiceAccount, ServiceAccount>();
 
+//Consul
+builder.Services.AddSingleton<IServiceId, ServiceId>();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddConsul();
+
+//End Consul
+
+builder.Services.AddFabio();
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -38,6 +51,7 @@ using (var scope = app.Services.CreateScope())
         logger.LogError(ex, "An error occurred creating the DB.");
     }
 }
+
 
 app.UseAuthorization();
 

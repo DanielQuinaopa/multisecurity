@@ -2,9 +2,9 @@
 WORKDIR /app
  
 COPY ./publish /app
-ENV ASPNETCORE_URLS=http://*:8080
+ENV ASPNETCORE_URLS=http://*:8079
 ENV ASPNETCORE_ENVIRONMENT docker
  
-EXPOSE 8080
+EXPOSE 8079
  
 ENTRYPOINT ["dotnet", "/app/multisecurity.dll"]

@@ -6,6 +6,9 @@ using multitrabajos_history.Messages.EventsHandlers;
 using multitrabajos_history.Repositories;
 using System.Reflection;
 using multitrabajos_history.Services;
+using Cordillera.Distribuidas.Discovery.Mvc;
+using Cordillera.Distribuidas.Discovery.Consul;
+using Cordillera.Distribuidas.Discovery.Fabio;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +33,15 @@ builder.Services.AddTransient<TransactionEventHandler>();
 builder.Services.AddTransient<IEventHandler<TransactionCreatedEvent>, TransactionEventHandler>();
 
 //EndRabbitMQ
+
+//Consul
+builder.Services.AddSingleton<IServiceId, ServiceId>();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddConsul();
+
+//End Consul
+
+builder.Services.AddFabio();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

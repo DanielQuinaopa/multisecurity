@@ -1,3 +1,7 @@
+using Consul;
+using Cordillera.Distribuidas.Discovery.Consul;
+using Cordillera.Distribuidas.Discovery.Fabio;
+using Cordillera.Distribuidas.Discovery.Mvc;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -9,12 +13,9 @@ using multisecurity.Utilities;
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Services.AddControllers();
+
 builder.Services.AddDbContext<Contexto>(options => options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")));
 // Add services to the container.
-
-builder.Services.AddScoped<IServiceLogin, ServiceLogin>();
-builder.Services.AddScoped<IServiceUser, ServiceUser>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -33,6 +34,21 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
+
+
+builder.Services.AddScoped<IServiceLogin, ServiceLogin>();
+builder.Services.AddScoped<IServiceUser, ServiceUser>();
+
+//Consul
+builder.Services.AddSingleton<IServiceId, ServiceId>();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddConsul();
+
+//End Consul
+
+builder.Services.AddFabio();
+
+builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -57,6 +73,16 @@ using (var scope = app.Services.CreateScope())
 
 
 }
+
+//Consult
+
+var serviceId = app.UseConsul();
+IHostApplicationLifetime applicationLifetime = app.Lifetime;
+var consulClient = app.Services.GetRequiredService<IConsulClient>();
+applicationLifetime.ApplicationStopped.Register(() =>
+{
+    consulClient.Agent.ServiceDeregister(serviceId);
+});
 // Configure the HTTP request pipeline.
 app.UseAuthorization();
 
