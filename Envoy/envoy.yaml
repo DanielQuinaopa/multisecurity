@@ -1,3 +1,8 @@
+admin:
+  address:
+    socket_address:
+      address: 0.0.0.0
+      port_value: 8002
 static_resources:
   listeners:
     - name: listener_0
@@ -16,54 +21,54 @@ static_resources:
                   virtual_hosts:
                     - name: local_service
                       domains:
-                        - "*"
+                        - ["*"]
                       routes:
                         - match:
-                            prefix: "/multisecurity/api/"
+                            prefix: "/api/User"
                           route:
-                            cluster: multisecurity_service
+                            cluster: multisecurity
                         - match:
-                            prefix: "/multitrabajos-cuenta/api/"
+                            prefix: "/api/Account"
                           route:
-                            cluster: cuenta_service
+                            cluster: multicuenta
                         - match:
-                            prefix: "/multitrabajo-deposito/api/"
+                            prefix: "/api/Transaction/Deposit"
                           route:
-                            cluster: deposito_service
+                            cluster: multideposito
                         - match:
-                            prefix: "/multitrabajo-retiro/api/"
+                            prefix: "/api/Transaction/Withdrawal"
                           route:
-                            cluster: retiro_service
+                            cluster: multiretiro
                         - match:
-                            prefix: "/multitrabajos-notification/api/"
+                            prefix: "/api/Notifications"
                           route:
-                            cluster: notification_service
+                            cluster: multinotificacion
                         - match:
-                            prefix: "/multitrabajos-history/api/"
+                            prefix: "/api/History"
                           route:
-                            cluster: history_service
+                            cluster: multihistory
                 http_filters:
                   - name: envoy.filters.http.router
   clusters:
-    - name: multisecurity_service
+    - name: multisecurity
       connect_timeout: 0.25s
-      type: STRICT_DNS
+      type: LOGICAL_DNS
       lb_policy: ROUND_ROBIN
       load_assignment:
-        cluster_name: multisecurity_service
+        cluster_name: multisecurity
         endpoints:
           - lb_endpoints:
               - endpoint:
                   address:
                     socket_address:
                       address: multisecurity
-                      port_value: 80
-    - name: cuenta_service
+                      port_value: 8079
+    - name: multicuenta
       connect_timeout: 0.25s
-      type: STRICT_DNS
+      type: LOGICAL_DNS
       lb_policy: ROUND_ROBIN
       load_assignment:
-        cluster_name: cuenta_service
+        cluster_name: multicuenta
         endpoints:
           - lb_endpoints:
               - endpoint:
@@ -71,55 +76,55 @@ static_resources:
                     socket_address:
                       address: multicuenta
                       port_value: 8080
-    - name: deposito_service
+    - name: multideposito
       connect_timeout: 0.25s
-      type: STRICT_DNS
+      type: LOGICAL_DNS
       lb_policy: ROUND_ROBIN
       load_assignment:
-        cluster_name: deposito_service
+        cluster_name: multideposito
         endpoints:
           - lb_endpoints:
               - endpoint:
                   address:
                     socket_address:
                       address: multideposito
-                      port_value: 80
-    - name: retiro_service
+                      port_value: 8081
+    - name: multiretiro
       connect_timeout: 0.25s
-      type: STRICT_DNS
+      type: LOGICAL_DNS
       lb_policy: ROUND_ROBIN
       load_assignment:
-        cluster_name: retiro_service
+        cluster_name: multiretiro
         endpoints:
           - lb_endpoints:
               - endpoint:
                   address:
                     socket_address:
                       address: multiretiro
-                      port_value: 80
-    - name: notification_service
+                      port_value: 8082
+    - name: multinotificacion
       connect_timeout: 0.25s
-      type: STRICT_DNS
+      type: LOGICAL_DNS
       lb_policy: ROUND_ROBIN
       load_assignment:
-        cluster_name: notification_service
+        cluster_name: multinotificacion
         endpoints:
           - lb_endpoints:
               - endpoint:
                   address:
                     socket_address:
-                      address: multinotification
-                      port_value: 80
-    - name: history_service
+                      address: multinotificacion
+                      port_value: 8083
+    - name: multihistory
       connect_timeout: 0.25s
-      type: STRICT_DNS
+      type: LOGICAL_DNS
       lb_policy: ROUND_ROBIN
       load_assignment:
-        cluster_name: history_service
+        cluster_name: multihistory
         endpoints:
           - lb_endpoints:
               - endpoint:
                   address:
                     socket_address:
                       address: multihistory
-                      port_value: 80
+                      port_value: 8084

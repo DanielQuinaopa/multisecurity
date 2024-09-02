@@ -5,31 +5,31 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "multisecurity",
-          "Port": 80
+          "Host": "service-balancer",
+          "Port": 9999
         }
       ],
       "UpstreamPathTemplate": "/multisecurity/api/{everything}",
       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
     },
     {
-      "DownstreamPathTemplate": "/multitrabajos-cuenta/api/{everything}",
+      "DownstreamPathTemplate": "/api/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "cuenta",
-          "Port": 80
+          "Host": "multicuenta",
+          "Port": 8080
         }
       ],
       "UpstreamPathTemplate": "/multitrabajos-cuenta/api/{everything}",
       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
     },
     {
-      "DownstreamPathTemplate": "/multitrabajo-deposito/api/{everything}",
+      "DownstreamPathTemplate": "/api/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "deposito",
+          "Host": "multideposito",
           "Port": 80
         }
       ],
@@ -37,11 +37,11 @@
       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
     },
     {
-      "DownstreamPathTemplate": "/multitrabajo-retiro/api/{everything}",
+      "DownstreamPathTemplate": "/api/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "retiro",
+          "Host": "multiretiro",
           "Port": 80
         }
       ],
@@ -49,11 +49,11 @@
       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
     },
     {
-      "DownstreamPathTemplate": "/multitrabajos-notification/api/{everything}",
+      "DownstreamPathTemplate": "/api/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "notification",
+          "Host": "multinotification",
           "Port": 80
         }
       ],
@@ -61,11 +61,11 @@
       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
     },
     {
-      "DownstreamPathTemplate": "/multitrabajos-history/api/{everything}",
+      "DownstreamPathTemplate": "/api/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "history",
+          "Host": "multihistory",
           "Port": 80
         }
       ],
@@ -74,6 +74,7 @@
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:8001"
+    "BaseUrl": "http://localhost:8085"
   }
+
 }

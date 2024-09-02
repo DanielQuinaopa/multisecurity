@@ -1,12 +1,12 @@
 services:
   envoy:
-    image: envoyproxy/envoy:v1.18.3
+    image: envoyproxy/envoy:v1.21.0
     container_name: envoy
     volumes:
-      - ./envoy.yaml:/etc/envoy/envoy.yaml
+      - ./Envoy/envoy.yaml:/etc/envoy/envoy.yaml
     ports:
       - "8001:8001"
-      - "80:80"
+      - "8002:8002"
     networks:
       - multitrabajos
 
@@ -24,7 +24,7 @@ services:
     build: ./multisecurity
     container_name: multisecurity
     ports:
-      - "8079:80"
+      - "8079:8079"
     networks:
       - multitrabajos
 
@@ -42,7 +42,7 @@ services:
     build: ./multisecuritydeposito/multitrabajo-deposito/multitrabajo-deposito
     container_name: multideposito
     ports:
-      - "8081:80"
+      - "8081:8081"
     networks:
       - multitrabajos
 
@@ -51,16 +51,16 @@ services:
     build: ./multisecurityretiro/multitrabajo-retiro/multitrabajo-retiro
     container_name: multiretiro
     ports:
-      - "8082:80"
+      - "8082:8082"
     networks:
       - multitrabajos
 
   multinotification:
-    image: multinotification
+    image: multinotificacion
     build: ./multisecuritynotificacion/multitrabajos-quinaopa-notificacion/multitrabajos-quinaopa-notificacion
-    container_name: multinotification
+    container_name: multinotificacion
     ports:
-      - "8083:80"
+      - "8083:8083"
     networks:
       - multitrabajos
 
@@ -69,7 +69,7 @@ services:
     build: ./multisecurityhistory/multitrabajos-history/multitrabajos-history
     container_name: multihistory
     ports:
-      - "8084:80"
+      - "8084:8084"
     networks:
       - multitrabajos
 

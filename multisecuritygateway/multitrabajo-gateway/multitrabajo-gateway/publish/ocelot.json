@@ -5,7 +5,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "service-balancer",
           "Port": 9999
         }
       ],
@@ -17,8 +17,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5002 //8085
+          "Host": "multicuenta",
+          "Port": 8080
         }
       ],
       "UpstreamPathTemplate": "/multitrabajos-cuenta/api/{everything}",
@@ -29,8 +29,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5003 //8085
+          "Host": "multideposito",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/multitrabajo-deposito/api/{everything}",
@@ -41,8 +41,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5004 //8085
+          "Host": "multiretiro",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/multitrabajo-retiro/api/{everything}",
@@ -53,8 +53,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5005 //8085
+          "Host": "multinotification",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/multitrabajos-notification/api/{everything}",
@@ -65,8 +65,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5006 //8085
+          "Host": "multihistory",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/multitrabajos-history/api/{everything}",
@@ -74,6 +74,8 @@
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "https://localhost:5000" //"https://localhost:80"
+    "BaseUrl": "http://localhost:8085"
   }
+
 }
+

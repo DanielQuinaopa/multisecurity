@@ -1,85 +1,86 @@
-{
-  "Routes": [
-    {
-      "DownstreamPathTemplate": "/multisecurity/api/{everything}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "service-balancer",
-          "Port": 9999
-        }
-      ],
-      "UpstreamPathTemplate": "/multisecurity/api/{everything}",
-      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{everything}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "multicuenta",
-          "Port": 8080
-        }
-      ],
-      "UpstreamPathTemplate": "/multitrabajos-cuenta/api/{everything}",
-      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{everything}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "multideposito",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/multitrabajo-deposito/api/{everything}",
-      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{everything}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "multiretiro",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/multitrabajo-retiro/api/{everything}",
-      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{everything}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "multinotification",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/multitrabajos-notification/api/{everything}",
-      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/{everything}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "multihistory",
-          "Port": 80
-        }
-      ],
-      "UpstreamPathTemplate": "/multitrabajos-history/api/{everything}",
-      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
-    }
-  ],
-  "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:8085"
-  }
+//{
+//  "Routes": [
+//    {
+//      "DownstreamPathTemplate": "/multisecurity/api/{everything}",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "service-balancer",
+//          "Port": 9999
+//        }
+//      ],
+//      "UpstreamPathTemplate": "/multisecurity/api/{everything}",
+//      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+//    },
+//    {
+//      "DownstreamPathTemplate": "/api/{everything}",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "multicuenta",
+//          "Port": 8080
+//        }
+//      ],
+//      "UpstreamPathTemplate": "/multitrabajos-cuenta/api/{everything}",
+//      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+//    },
+//    {
+//      "DownstreamPathTemplate": "/api/{everything}",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "multideposito",
+//          "Port": 8081
+//        }
+//      ],
+//      "UpstreamPathTemplate": "/multitrabajo-deposito/api/{everything}",
+//      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+//    },
+//    {
+//      "DownstreamPathTemplate": "/api/{everything}",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "multiretiro",
+//          "Port": 8082
+//        }
+//      ],
+//      "UpstreamPathTemplate": "/multitrabajo-retiro/api/{everything}",
+//      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+//    },
+//    {
+//      "DownstreamPathTemplate": "/api/{everything}",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "multinotification",
+//          "Port": 8083
+//        }
+//      ],
+//      "UpstreamPathTemplate": "/multitrabajos-notification/api/{everything}",
+//      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+//    },
+//    {
+//      "DownstreamPathTemplate": "/api/{everything}",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "multihistory",
+//          "Port": 8084
+//        }
+//      ],
+//      "UpstreamPathTemplate": "/multitrabajos-history/api/{everything}",
+//      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+//    }
+//  ],
+//  "GlobalConfiguration": {
+//    "BaseUrl": "http://localhost:8085"
+//  }
 
-}
-/*
-  {
+//}
+
+
+{
   "Routes": [
     {
       "DownstreamPathTemplate": "/multisecurity/api/{everything}",
@@ -154,8 +155,7 @@
       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
     }
   ],
-  "GlobalConfiguration": {
-    "BaseUrl": "https://localhost:5000" //"https://localhost:80"
-  }
+    "GlobalConfiguration": {
+      "BaseUrl": "https://localhost:5000" //"https://localhost:80"
+    }
 }
-*/
