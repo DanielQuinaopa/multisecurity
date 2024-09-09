@@ -8,3 +8,4 @@ ENV ASPNETCORE_ENVIRONMENT docker
 EXPOSE 8079
  
 ENTRYPOINT ["dotnet", "/app/multisecurity.dll"]
+

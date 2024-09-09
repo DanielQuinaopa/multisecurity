@@ -18,7 +18,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "multicuenta",
-          "Port": 8080
+          "Port": 8079
         }
       ],
       "UpstreamPathTemplate": "/multitrabajos-cuenta/api/{everything}",

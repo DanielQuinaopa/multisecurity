@@ -40,7 +40,7 @@ static_resources:
                           route:
                             cluster: multiretiro
                         - match:
-                            prefix: "/api/Notifications"
+                            prefix: "/api/Notification"
                           route:
                             cluster: multinotificacion
                         - match:
