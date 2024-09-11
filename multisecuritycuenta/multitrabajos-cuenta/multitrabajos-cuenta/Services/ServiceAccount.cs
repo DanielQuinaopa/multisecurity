@@ -8,7 +8,7 @@ namespace multitrabajos_cuenta.Services
     {
         //Se puede utilizar solo en esta clase 
         private readonly ContextDatabase _contextDatabase;
-        public ServiceAccount(ContextDatabase contextDatabase) 
+        public ServiceAccount(ContextDatabase contextDatabase)
         {
             _contextDatabase = contextDatabase;
         }
@@ -49,6 +49,28 @@ namespace multitrabajos_cuenta.Services
         {
             _contextDatabase.Entry(account).State = EntityState.Modified;
             return await _contextDatabase.SaveChangesAsync() > 0;
+        }
+        public async Task<bool> NewAccount(Customer customer)
+        {
+            try
+            {
+                await _contextDatabase.Customer.AddAsync(customer);
+                await _contextDatabase.Account.AddAsync(new Account
+                {
+                    IdAccount = customer.IdCustomer,
+                    TotalAmount = 0,
+                    IdCustomer = customer.IdCustomer
+                });
+                // Guardar los cambios en la base de datos
+                await _contextDatabase.SaveChangesAsync();
+                return true;
+
+            }
+            catch (System.Exception ex)
+            {
+
+                return false;
+            }
         }
     }
 }

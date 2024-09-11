@@ -1,4 +1,75 @@
 services:
+  mongo:
+    image: mongo:latest
+    container_name: mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: cordillera123
+    ports:
+      - "27018:27017"  # Mapea el puerto 27018 en tu host al puerto 27017 del contenedor
+    networks:
+      - multitrabajos
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: cordillera123
+      POSTGRES_DB: db_account2
+    ports:
+      - "5432:5432"
+    networks:
+      - multitrabajos
+
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: cordillera123
+      MYSQL_DATABASE: dbSecurity
+      MYSQL_USER: root
+      MYSQL_PASSWORD: cordillera123
+    ports:
+      - "3307:3306"
+    networks:
+      - multitrabajos
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sqlserver1
+    environment:
+      SA_PASSWORD: Cordillera123
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: Express
+    ports:
+      - "1433:1433"
+    networks:
+      - multitrabajos
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: cordillera123
+      MYSQL_DATABASE: dbSecurity
+    ports:
+      - "3306:3306"
+    networks:
+      - multitrabajos
+
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: service-event
+    environment:
+      RABBITMQ_DEFAULT_USER: root
+      RABBITMQ_DEFAULT_PASS: Cordillera123
+      RABBITMQ_DEFAULT_VHOST: /
+    ports:
+      - "5672:5672"
+      - "15672:15672"  # Puerto para la consola de administración de RabbitMQ
+    networks:
+      - multitrabajos
   envoy:
     image: envoyproxy/envoy:v1.21.0
     container_name: envoy

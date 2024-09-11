@@ -6,6 +6,8 @@
         Task<Models.Account> GetbyId(int id);
         Task<bool> Deposit(Models.Account account);
         Task<bool> Withdrawal(Models.Account account);
+        Task<bool> NewAccount(Models.Customer customer);
+
     }
 }
     

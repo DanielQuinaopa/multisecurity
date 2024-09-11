@@ -7,21 +7,21 @@ namespace multisecurity.Models
         [Key]//Primary Key
         public int Id { get; set; }
 
-        public string Name { get; set; } = null!;
+        public string? Name { get; set; }
 
-        public string LastName { get; set; } = null!;
+        public string? LastName { get; set; }
 
-        public string Email { get; set; } = null!;
+        public string? Email { get; set; }
 
-        public string Password { get; set; } = null!;
+        public string? Password { get; set; }
 
-        public string? Phone { get; set; } = null!;
+        public string? Phone { get; set; }
 
-        public string Estado { get; set; } = null!;
+        public string? Estado { get; set; }
 
-        public DateTime Add { get; set; }
+        public DateTime? Add { get; set; }
 
-        public int RolId { get; set; }
+        public int? RolId { get; set; }
 
         public virtual Rol Rol { get; set; }
     }

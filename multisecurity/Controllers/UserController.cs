@@ -1,24 +1,27 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using Cordillera.Distribuidas.Event.Bus;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using multisecurity.DTOs;
 using multisecurity.Services;
+using multitrabajo_retiro.Messages.Commands;
 
 namespace multisecurity.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/User")]
     [ApiController]
     public class UserController : ControllerBase
     {
         private readonly IServiceUser _serviceUser;
-        public UserController(IServiceUser serviceUser) 
+        private readonly IEventBus _bus;
+        public UserController(IServiceUser serviceUser, IEventBus bus)
         {
             _serviceUser = serviceUser;
+            _bus = bus;
         }
         [HttpGet]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult> get()
         {
             var result = await _serviceUser.getAll();
@@ -46,10 +49,10 @@ namespace multisecurity.Controllers
 
             });
         }
-        [HttpPost]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost("save")]
         public async Task<ActionResult> save(UserRequest user)
         {
+            Console.Write("Aki");
             Models.User userData = new Models.User
             {
                 Id = user.id,
@@ -61,46 +64,22 @@ namespace multisecurity.Controllers
                 RolId = user.RolId
             };
             var resultSave = await _serviceUser.save(userData);
+            /*RAbbit*/
+            if (resultSave)
+            {
+                var UsuerCreateCommand = new UsuerCreateCommand
+                (
+                     user.id,
+                     user.name,
+                     user.email
+                );
+                await _bus.SendCommand(UsuerCreateCommand);
+            }
+
             return Ok(new
             {
                 result = resultSave,
-                message = resultSave== true ? "Guardado Correctamente" : "Error al Guardar"
-            }); ;
-        }
-        [HttpPut]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<ActionResult> update(UserRequest user)
-        {
-            Models.User userData = new Models.User
-            {
-                Id = user.id,
-                Name = user.name,
-                Email = user.email,
-                LastName = user.lastName,
-                Password = user.password,
-                Phone = user.phone,
-                RolId = user.RolId
-            };
-            var resultUpdate = await _serviceUser.update(userData);
-            return Ok(new
-            {
-                result = resultUpdate,
-                message = resultUpdate == true ? "Modificado Correctamente" : "Error al Modificar"
-            }); ;
-        }
-        [HttpDelete]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<ActionResult> delete(int id)
-        {
-            if (id <= 0)
-            {
-                return BadRequest();
-            }
-            var resultDelete = await _serviceUser.delete(id);
-            return Ok(new
-            {
-                result = resultDelete,
-                message = resultDelete == true ? "Eliminado Correctamente" : "Error al Eliminar"
+                message = resultSave == true ? "Guardado Correctamente" : "Error al Guardar"
             }); ;
         }
     }

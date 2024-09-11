@@ -32,6 +32,15 @@ builder.Services.AddRabbitMQ();
 builder.Services.AddTransient<TransactionEventHandler>();
 builder.Services.AddTransient<IEventHandler<TransactionCreatedEvent>, TransactionEventHandler>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
 //EndRabbitMQ
 
 //Consul
@@ -50,7 +59,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-
+app.UseCors();
 app.UseAuthorization();
 
 app.MapControllers();

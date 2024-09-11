@@ -45,7 +45,7 @@ namespace multisecurity.Services
                 _contexto.Add(user);
                 return await _contexto.SaveChangesAsync() > 0;
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
                 return false;

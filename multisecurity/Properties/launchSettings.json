@@ -1,13 +1,12 @@
 {
   "profiles": {
-    "multitrabajo_deposito": {
+    "multisecurity": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchBrowser": false,
-      "launchUrl": "",
-      "applicationUrl": "http://localhost:8079",
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "local"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     }
   }

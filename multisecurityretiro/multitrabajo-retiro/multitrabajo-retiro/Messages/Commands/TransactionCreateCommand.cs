@@ -2,17 +2,17 @@
 
 namespace multitrabajo_retiro.Messages.Commands
 {
-    public class TransactionCreateCommand : Command
+    public class UsuerCreateCommand : Command
     {
-        public int IdTransaction { get; set; }
+        public int IdUsuer { get; set; }
         public decimal Amount { get; set; }
         public string Type { get; set; } = null!;
         public string CreationDate { get; set; } = null!;
         public int AccountId { get; set; }
 
-        public TransactionCreateCommand(int idTransaction, decimal amount, string type, string creationDate, int accountId)
+        public UsuerCreateCommand(int idUsuer, decimal amount, string type, string creationDate, int accountId)
         {
-            IdTransaction = idTransaction;
+            IdUsuer = idUsuer;
             Amount = amount;
             Type = type;
             CreationDate = creationDate;

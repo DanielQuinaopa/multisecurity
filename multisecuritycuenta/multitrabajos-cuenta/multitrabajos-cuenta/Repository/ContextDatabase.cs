@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using multitrabajos_cuenta.Models;
 
 namespace multitrabajos_cuenta.Repository
 {
@@ -8,13 +9,15 @@ namespace multitrabajos_cuenta.Repository
         {
         }
 
-        public DbSet<Models.Account> Account { get; set; }
         public DbSet<Models.Customer> Customer { get; set; }
+        public DbSet<Models.Account> Account { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Models.Account>().ToTable("Account");
-            modelBuilder.Entity<Models.Customer>().ToTable("Customer");
+            modelBuilder.Entity<Customer>().ToTable("Customer");
+            modelBuilder.Entity<Account>()
+                 .Property(a => a.TotalAmount)
+                 .HasColumnType("decimal(18,2)");
         }
     }
 }
