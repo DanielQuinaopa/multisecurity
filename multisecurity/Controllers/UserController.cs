@@ -52,7 +52,6 @@ namespace multisecurity.Controllers
         [HttpPost("save")]
         public async Task<ActionResult> save(UserRequest user)
         {
-            Console.Write("Aki");
             Models.User userData = new Models.User
             {
                 Id = user.id,
@@ -64,7 +63,6 @@ namespace multisecurity.Controllers
                 RolId = user.RolId
             };
             var resultSave = await _serviceUser.save(userData);
-            /*RAbbit*/
             if (resultSave)
             {
                 var UsuerCreateCommand = new UsuerCreateCommand
