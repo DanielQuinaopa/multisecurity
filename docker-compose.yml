@@ -75,6 +75,15 @@ services:
       - "8084:8084"
     networks:
       - multitrabajos
+  ocelot:
+    image: ocelot.docker
+    build: ./multisecuritygateway/multitrabajo-gateway/multitrabajo-gateway
+    container_name: ocelot
+    ports:
+      - "8085:8085"
+    networks:
+      - multitrabajos
+
 
 networks:
   multitrabajos:
